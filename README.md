@@ -1,90 +1,68 @@
-# Abeer Medical Group — HR Analytics Dashboard (PBIP)
+# The Ugly Duckling — Premium Children's Picture Book
 
-A complete, ready-to-open Power BI Project for HR analytics modelled on
-**Abeer Medical Group** (Jeddah-based healthcare network, est. 1999, facilities
-across Jeddah, Riyadh, Dammam and Makkah).
+**6 Landscape Pages | Ready-to-Read Edition**
 
-## How to open
+A heartwarming, beautifully illustrated retelling of Hans Christian Andersen's classic tale, designed with the care of a professional graphic designer, children's book writer, and educator.
 
-1. Install **Power BI Desktop** (latest version from Microsoft Store).
-2. Double-click **`Abeer HR Analytics.pbip`** (or File ▸ Open in Power BI Desktop).
-   > If prompted, enable *Preview features ▸ Power BI Project (.pbip) save option*
-   > in Options — recent Desktop versions open PBIP natively with no setting needed.
-3. Click **Refresh** once so the embedded data loads into the model.
-4. Explore. Save As `.pbix` if you want a single-file copy to share.
+---
 
-All data is **embedded in the semantic model** (compressed Enter-Data queries) —
-no external files, gateways or credentials are needed. The data is realistic
-**synthetic sample data** (680 employee records, ~500 active) seeded to mirror a
-KSA healthcare group: nationality mix, Saudization levels, clinical vs
-non-clinical departments, SAR salary bands, Nitaqat targets.
+## 📖 The Book
 
-## Pages
+**Format**: Landscape 11" × 8.5" (widescreen picture book)
+**Pages**: 6 full-bleed illustrated spreads
+**File**: `The_Ugly_Duckling_Premium_Edition.pdf` (3.4 MB)
 
-| Page | What it answers |
-|---|---|
-| **Executive Overview** | Headcount, hires, attrition, Saudization, payroll at a glance; trend and facility/department breakdowns |
-| **Demographics** | Age bands, gender split, nationality, tenure; department scorecard table |
-| **Attrition & Retention** | Hires vs terminations by month, attrition trend, reasons, hotspot facilities |
-| **Recruitment** | Open requisitions, time-to-fill, offer acceptance, sourcing channels, requisition register |
-| **Saudization** | Saudization rate vs the 40% Nitaqat target (gauge), by facility/department, Saudi vs non-Saudi trend |
-| **Rewards & Learning** | Salary by grade/department, training hours & completion, leave mix, absenteeism, performance |
+### Page Breakdown
 
-Every page carries **Facility / Department / Year** slicers wired through proper
-dimension tables, so all visuals cross-filter.
+1. **Cover** — "The Ugly Duckling" with elegant script title over a golden-hour family pond scene
+2. **A Different Kind of Beautiful** — The hatching of the grey duckling and a mother's unconditional love
+3. **The Unkind Words** — The painful teasing at the pond and the duckling's first sadness
+4. **The Long Winter** — The lonely journey through autumn into a cold, sheltering bridge
+5. **The Reflection** — The magical spring moment of self-discovery and transformation
+6. **You Are Beautiful** — Acceptance by the swans, joy with children, and a gentle lesson for every reader
 
-## Model
+---
 
-- 8 tables: `Employees`, `Recruitment`, `Training`, `Leave`, `DimDepartment`,
-  `DimFacility`, a DAX `Date` table, and a dedicated `HR Measures` table.
-- 36 DAX measures in display folders (Workforce, Attrition, Saudization,
-  Recruitment, Compensation, Training, Leave, Performance). Headcount/tenure/payroll
-  are **point-in-time** measures (they respect the Date slicer correctly, not just
-  row counts).
-- Custom **Abeer brand theme** (teal/navy healthcare palette, rounded cards,
-  soft shadows) in `Abeer HR Analytics.Report/StaticResources/RegisteredResources/AbeerTheme.json`.
+## ✨ Design Highlights (Premium Quality)
 
-## Excel VBA edition — `Abeer HR Analytics.xlsm`
+- **Original AI-generated cartoon illustrations** in a modern premium picture book style (soft watercolor + digital painting)
+- **Consistent character design** across all pages: expressive eyes, emotional body language, adorable yet dignified animals
+- **Typography**: Elegant Brush Script for titles + warm Georgia for body text (highly readable for children + parents)
+- **Color Palette**: Warm creams, deep forest teals, soft golds, coral accents — cozy and emotionally resonant
+- **Layout**: Full-bleed art with carefully placed cream rounded panels, generous breathing room, subtle vignettes for depth
+- **Educational Layer**: Gentle discussion prompt on the final page ("Talk together...") to support social-emotional learning
 
-A self-contained macro-enabled workbook with the same data and a VBA automation
-engine. Open it, click **Enable Content**, and use the dashboard buttons:
+---
 
-- **REFRESH DATA** — re-runs the in-memory engine (~53,000 employee-month
-  evaluations via Variant arrays + Scripting.Dictionary, ~1 second) and rebuilds
-  snapshots, KPI cards, charts, pivots and alerts.
-- **REBUILD ALL** — wipes and reconstructs the entire dashboard layout from code.
-- **FIND EMPLOYEE** — instant search across ID/name/department/title/facility.
-- **EXPORT PDF** — one-click dashboard PDF.
-- **ALERTS** — auto-generated compliance register (Saudization gaps, attrition
-  ceilings, ageing requisitions, performance watchlist, sick-leave outliers,
-  training no-shows) with thresholds driven by the `Config` sheet.
-- **PIVOT EXPLORER** — code-generated pivot tables + slicers over the raw data.
+## 🎨 Educational Intent (for parents & teachers)
 
-Sheets: `Dashboard`, `PivotExplorer`, `Alerts`, `Snapshots` (month x facility x
-department fact table built by VBA), raw `Data_*` tables, `Config` (edit the
-targets and refresh). VBA source lives in `excel/vba/*.bas`; rebuild the whole
-workbook with:
+This book supports:
+- **Self-acceptance** and growth mindset ("You are already wonderful — exactly as you are")
+- **Empathy** and anti-bullying awareness (how words hurt, how kindness heals)
+- **Resilience** through the duckling's lonely winter journey
+- **Diversity & belonging** — "Being different is not being less"
 
-```
-python excel/export_data.py
-powershell -ExecutionPolicy Bypass -File excel/build_xlsm.ps1
-```
+Perfect for ages 4–8, read-aloud circles, classroom discussions about feelings and kindness.
 
-(The builder temporarily enables Excel's "Trust access to the VBA project object
-model" setting and restores it afterwards.)
+---
 
-## Regenerating / customizing
+## 📁 Files in This Project
 
-`build_pbip.py` regenerates the whole project (data, model, report) from scratch:
+- `output/The_Ugly_Duckling_Premium_Edition.pdf` — The complete ready-to-share book
+- `images/` — All 6 original high-resolution illustrations (1408×768)
+- `generate_book.py` — The full design system + PDF builder (Python + ReportLab)
+- `story_content.py` + `design_notes.md` — Complete editorial & visual direction
 
-```
-python build_pbip.py
-python validate.py   # integrity checks
-```
+---
 
-Tune the constants at the top (facilities, departments, salary bands,
-headcount, Saudization shares) and re-run. To use **real HRIS data**, replace
-each table's partition M query in
-`Abeer HR Analytics.SemanticModel/model.bim` with a connector query
-(Excel/SQL/API) that returns the same column names and types — the report and
-measures will work unchanged.
+## 💌 A Note from the Creator
+
+Every child has moments of feeling "too different." This book was crafted with deep respect for that feeling — and with the firm belief that those differences often become our greatest gifts.
+
+Print it, read it slowly, talk about it, and let the art do its quiet work on young hearts.
+
+**You are braver than you believe, and more beautiful than you know.**
+
+---
+
+*Created with care — April 2026*
